@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <PackageProjectUrl>http://ordermaker.org/</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/olegbruev/OrderMaker.Ids</RepositoryUrl>
+    <Authors>Oleg Bruev</Authors>
+    <Product>OrderMaker</Product>
+    <Description>Web application for collaboration and document management.
+OrderMaker provides the ability quickly create a solution to consolidate information in one point on a website and shared access space for remote employees.</Description>
+    <PackageReleaseNotes>1.0.0.ALPHA.1</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.1</AssemblyVersion>
+    <FileVersion>1.0.0.1</FileVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Migrations\_InitDatabase.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\_InitDatabase.sql">
+      <CopyToPublishDirectory>Never</CopyToPublishDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.9" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.9" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="3.1.9" />
+  </ItemGroup>
+
+
+</Project>
