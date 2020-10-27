@@ -1,7 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 using Mtd.OrderMaker.Ids.Entity;
 using System;
 using System.Collections.Generic;
@@ -14,10 +16,11 @@ namespace Mtd.OrderMaker.Ids
     public class MigrationIdService : IHostedService
     {
         private readonly IServiceProvider serviceProvider;
-
-        public MigrationIdService(IServiceProvider serviceProvider)
+        private readonly ILogger logger;
+        public MigrationIdService(IServiceProvider serviceProvider, ILogger<MigrationIdService> logger)
         {
             this.serviceProvider = serviceProvider;
+            this.logger = logger;
         }
 
         public async Task StartAsync(CancellationToken cancellationToken)
@@ -25,8 +28,18 @@ namespace Mtd.OrderMaker.Ids
 
             using var scope = serviceProvider.GetRequiredService<IServiceScopeFactory>().CreateScope();
             var idnContext = scope.ServiceProvider.GetRequiredService<IdentityContext>();
-            IEnumerable<string> pm = await idnContext.Database.GetPendingMigrationsAsync();
-            bool idnMigration = pm.Any();
+            bool idnMigration = false;
+
+            try
+            {
+                IEnumerable<string> pm = await idnContext.Database.GetPendingMigrationsAsync();
+                idnMigration = pm.Any();
+            }
+            catch (SqlException ex)
+            {
+                logger.LogError(ex.Message);
+            }
+
 
             if (idnMigration)
             {
