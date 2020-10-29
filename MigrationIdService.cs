@@ -16,7 +16,8 @@ namespace Mtd.OrderMaker.Ids
     public class MigrationIdService : IHostedService
     {
         private readonly IServiceProvider serviceProvider;
-        private readonly ILogger logger;
+        private readonly ILogger logger;     
+
         public MigrationIdService(IServiceProvider serviceProvider, ILogger<MigrationIdService> logger)
         {
             this.serviceProvider = serviceProvider;

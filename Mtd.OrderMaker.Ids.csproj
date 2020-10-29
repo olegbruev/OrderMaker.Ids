@@ -8,9 +8,11 @@
     <Product>OrderMaker</Product>
     <Description>Web application for collaboration and document management.
 OrderMaker provides the ability quickly create a solution to consolidate information in one point on a website and shared access space for remote employees.</Description>
-    <PackageReleaseNotes>1.0.0.ALPHA.3</PackageReleaseNotes>
-    <AssemblyVersion>1.0.0.3</AssemblyVersion>
-    <FileVersion>1.0.0.3</FileVersion>
+    <PackageReleaseNotes>1.0.0.ALPHA.4</PackageReleaseNotes>
+    <AssemblyVersion>1.0.0.4</AssemblyVersion>
+    <FileVersion>1.0.0.4</FileVersion>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
   </PropertyGroup>
 
   <ItemGroup>
